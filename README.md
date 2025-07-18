@@ -104,7 +104,7 @@ Este projeto está sendo desenvolvido com muito empenho por:
 
 | Nome                  | GitHub                                       |
 | --------------------- | -------------------------------------------- |
-| **[Seu Nome Completo]** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/[SEU_USUARIO_GITHUB]) |
+| **Gabriel C. Roani** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/[SEU_USUARIO_GITHUB]) |
 | **Artur Riste Brito** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/[USUARIO_GITHUB_DO_ARTUR]) |
 
 
