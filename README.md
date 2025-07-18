@@ -3,7 +3,7 @@
 ![Badge de Status](https://img.shields.io/badge/status-em--desenvolvimento-yellow)
 ![Badge de Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-blue)
 
-Um projeto acadêmico e de portfólio para a criação de um sistema completo de gestão de estoque e ponto de venda (PDV), utilizando uma arquitetura moderna, distribuída e poliglota para simular um ambiente de desenvolvimento de software do mundo real.
+Um projeto acadêmico e de portfólio para a criação de um sistema completo de gestão de estoque e ponto de venda (PDV), utilizando uma arquitetura moderna, vasta, muito bem distribuída e poliglota para simular um ambiente de desenvolvimento de software do mundo real.
 
 ---
 
@@ -23,10 +23,10 @@ Este projeto utiliza uma variedade de tecnologias, separadas por componente:
 | Componente             | Tecnologias Principais                                |
 | ---------------------- | ----------------------------------------------------- |
 | **Backend API Core** | Java 17+, Spring Boot 3, Spring Data JPA, Maven, JWT  |
-| **Frontend Web** | JavaScript/TypeScript, React (ou Vue/Angular), NPM, Axios |
+| **Frontend Web** | JavaScript, Vue.js, NPM, Axios |
 | **Serviço de Análise** | Python 3.9+, Flask (ou FastAPI), Pandas, Matplotlib   |
 | **Banco de Dados** | MySQL 8                                               |
-| **Ferramentas Gerais** | Git, GitHub, Docker (opcional), Insomnia/Postman      |
+| **Ferramentas Gerais** | Git, GitHub, Docker, Postman      |
 
 ---
 
@@ -104,8 +104,8 @@ Este projeto está sendo desenvolvido com muito empenho por:
 
 | Nome                  | GitHub                                       |
 | --------------------- | -------------------------------------------- |
-| **Gabriel C. Roani** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/[SEU_USUARIO_GITHUB]) |
-| **Artur Riste Brito** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/[USUARIO_GITHUB_DO_ARTUR]) |
+| **Gabriel C. Roani** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GabrielRoani) |
+| **Marcelo G. Chies** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/MarceloChies) |
 
 
 ---
