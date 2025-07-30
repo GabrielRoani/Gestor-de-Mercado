@@ -1,35 +1,24 @@
 # Introdução
 
-[Aqui a equipe deve criar um texto descritivo com a visão geral do problema abordado, apresentando o ambiente e as situações envolvidas no problema.]
+[O mercadinho do seu Zé esta com dificultade no gerenciamento e controle de suas vendas, vendo isso pensamos em como ajudar o seu Zé, desenvolvendo uma solução prática e fácil para ajudarmos pequenos comércios.]
 
 ## Problema
-[Aqui a equipe deve fornecer uma descrição detalhada do problema a ser resolvido. Não é o momento adequado para abordar questões técnicas relacionadas ao desenvolvimento da aplicação. O objetivo é compreender e comunicar de maneira precisa qual é o desafio ou necessidade que motiva a criação da aplicação.]
-
-Este link pode ajudar a equipe a entender mais sobre definição do problema: [Objetivos, Problema de pesquisa e Justificativa.](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-
+[Com o sucesso e quantidade excessiva de clientes, o mercadinho necessitou de algo mais sofisticado, não mais uma caderneta anotando preços e demandas de estoque, algo que abrisse a possibilidade de familiares e amigos ajudarem no comércio, assim como a capacidade de participação de dona Maria nas vendas, ou com um melhor controle de estoque do Firmino, amigo antigo de seu Zé que possui um vasto conhecimento sobre gestão, por essas e outras houve a necessidade de algo mais organizado e seguro.]
 
 ## Objetivos
 
-[Aqui a equipe deve realizar uma descrição detalhada dos objetivos do trabalho, ressaltando quais as questões principais do problema a serem resolvidas pelo projeto, não é a hora de apresentar requisitos detalhados.]
+[Gerir e automatizar a entrada e saída de produtos do estoque, trazer mais segurança nas vendas, reduzindo a chance de erros nos valores, e por fim incapacitando a possibilidade de venda de itens não disponíveis no estoque.]
  
-Este link pode ajudar a equipe a entender mais sobre definição dos objetivos: [Objetivos, Problema de pesquisa e Justificativa.](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-
 ## Justificativa
 
-[Aqui a equipe deve descrever a importância ou a motivação para trabalhar com o problema definido. Indique as razões pelas quais a equipe escolheu o problema e definiu os objetivos.
+[Vendo tudo isso nossa equipe não conseguiu pensar em outra coisa a não ser na solução e apoio ao problema de seu Zé, visto que ele e muitos outros comércios ainda trabalham de uma forma mais rústica.
 
 Devem ser apresentados dados de fontes relevantes e confiáveis sobre o problema, inserindo-o como alvo de estudo. Sugere-se que a equipe utilize questionários, entrevistas e dados estatísticos, que devem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pela equipe.]
 
-Este link pode ajudar a equipe a formular a justificativa: [Como montar a justificativa.](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
-
 ## Público-Alvo
 
-[Aqui é necessário descrever os atores envolvidos no problema, destacando os diferentes perfis de usuários. O propósito é apresentar as características, necessidades, conhecimentos prévios e experiência com a tecnologia do público-alvo.
+[Por aí sabemos que existem dezenas de centenas de seus Zé's, tendo seus mercadinhos de esquina, bares e barraquinhas pelo mundo todo, é serio, eles estão em todos os lugares, e muitos desses pequenos varejistas ainda não possuem ciência dessa possibilidade.]
 
-Sugere-se que a equipe utilize questionários e/ou entrevistas a fim de conhecer os atores que compõem o público alvo.]
+Caso você saiba de algum micro-emprendedor que necessita desse serviço, por favor deixe os dados de contato no link abaixo: 
 
-Os links abaixo podem ajudar a equipe a conhecer um pouco mais sobre o público-alvo. 
-
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-
+link aqui
