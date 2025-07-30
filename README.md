@@ -5,6 +5,7 @@
 `DISCIPLINA`
 
 `SEMESTRE`
+<img src="https://github.com/GabrielRoani/Gestor-de-Mercado/blob/main/documentos/img/logo.png?raw=true" width="200"/>
 
 Descrever resumidamente, em um ou dois parágrafos, o projeto desenvolvido.
 
