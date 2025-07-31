@@ -2,17 +2,12 @@
 
 <img src="https://github.com/GabrielRoani/Gestor-de-Mercado/blob/main/documentos/img/logo_redonda_Conectta.png?raw=true" width="200"/>
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto desenvolvido.
+Uma plataforma leve, simples e intuitiva para uso dentro de mercados e pequenos pontos de vendas, auxiliando na gestão de estoque e produtos, venda e trazendo relátorios sobre saída e entrada de mercadoria.
 
 ## Integrantes
 
 * Gabriel Cazzuni Roani
 * Marcelo Giovani Chies Filho
-
-
-## Orientador
-
-* Nome completo do professor
 
 # Documentação
 
@@ -27,10 +22,6 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto desenvolvido.
 <li><a href="documentos/08-Registro de Testes de Software.md"> Registro de Testes de Software</a></li>
 <li><a href="documentos/09-Referências.md"> Referências Bibliográficas</a></li>
 </ol>
-
-# Hospedagem
-
-* Insira o endereço eletrônico público de acesso ao conteúdo publicado. 
 
 # Código-Fonte
 
