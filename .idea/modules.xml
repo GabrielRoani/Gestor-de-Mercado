@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Gestor-de-Mercado.iml" filepath="$PROJECT_DIR$/.idea/Gestor-de-Mercado.iml" />
+      <module fileurl="file://$PROJECT_DIR$/codigo-fonte/projeto-api/projeto-api.iml" filepath="$PROJECT_DIR$/codigo-fonte/projeto-api/projeto-api.iml" />
+    </modules>
+  </component>
+</project>
