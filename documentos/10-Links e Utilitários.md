@@ -1,7 +1,10 @@
-# Referências Bibliográficas
+# Aplicações 
 
-[Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.]
+## Invertexto
 
-> **Links Úteis**:
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/)
-> - [Referências Bibliográficas da ABNT](https://comunidade.rockcontent.com/referencia-bibliografica-abnt/)
+Uma ferramenta web capaz de servir como bloco de notas online, servindo como meio de comunicação de afazeres e erros entre a equipe.
+
+## Postman
+
+## Swagger
+
