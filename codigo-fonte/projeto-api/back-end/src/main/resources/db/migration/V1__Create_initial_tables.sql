@@ -12,14 +12,14 @@ CREATE TABLE produtos (
 
 -- Tabela para o histórico de movimentações de estoque
 CREATE TABLE movimentacoes_estoque (
-                                       id SERIAL PRIMARY KEY,
-                                       produto_id INTEGER NOT NULL,
-                                       tipo_movimentacao VARCHAR(50) NOT NULL,
-                                       quantidade INTEGER NOT NULL,
-                                       data_movimentacao TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                       usuario_id INTEGER,
-                                       justificativa TEXT,
-                                       CONSTRAINT fk_produto
-                                           FOREIGN KEY(produto_id)
-                                               REFERENCES produtos(id)
+                           id SERIAL PRIMARY KEY,
+                           produto_id INTEGER NOT NULL,
+                           tipo_movimentacao VARCHAR(50) NOT NULL,
+                           quantidade INTEGER NOT NULL,
+                           data_movimentacao TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                           usuario_id INTEGER,
+                           justificativa TEXT,
+                           CONSTRAINT fk_produto
+                               FOREIGN KEY(produto_id)
+                                   REFERENCES produtos(id)
 );
