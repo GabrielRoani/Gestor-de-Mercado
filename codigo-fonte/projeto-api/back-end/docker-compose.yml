@@ -1,7 +1,7 @@
 services:
   postgres:
     # IMAGEM ALTERADA PARA A VERSÃO 16, MAIS RECENTE E COMPATÍVEL
-    image: arm64v8/postgres:16
+    image: postgres:16
     container_name: conectta-db
     environment:
       POSTGRES_USER: conectta_user
