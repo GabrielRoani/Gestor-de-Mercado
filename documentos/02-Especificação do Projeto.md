@@ -9,27 +9,23 @@ A seguir, são detalhados os perfis de usuários que interagem com o sistema.
 | Atributo | Descrição |
 | :--- | :--- |
 | **Descrição** | O Administrador é geralmente o dono do negócio ou um gerente com acesso total ao sistema. Ele é responsável por configurar o sistema, gerenciar usuários, cadastrar produtos, supervisionar o estoque e analisar o desempenho geral das vendas através de relatórios. |
-| **Necessidades** | \<ul\>\<li\>Ter uma visão completa de todas as operações (vendas, estoque, finanças).\</li\>\<li\>Poder cadastrar, editar e remover produtos e categorias.\</li\>\<li\>Controlar os níveis de estoque e ser alertado sobre a necessidade de reposição.\</li\>\<li\>Gerenciar as contas de outros usuários (vendedores, estoquistas).\</li\>\<li\>Acessar relatórios detalhados para tomada de decisão estratégica.\</li\>\</ul\> |
+| **Necessidades** | Ter uma visão completa de todas as operações (vendas, estoque, finanças). Poder cadastrar, editar e remover produtos e categorias. Controlar os níveis de estoque e ser alertado sobre a necessidade de reposição. Gerenciar as contas de outros usuários (vendedores, estoquistas). Acessar relatórios detalhados para tomada de decisão estratégica. |
 
 ### Perfil: Vendedor / Caixa
 
 | Atributo | Descrição |
 | :--- | :--- |
 | **Descrição** | O Vendedor ou Caixa é o usuário que opera o sistema no dia a dia, na frente de loja. Sua principal função é registrar as vendas de forma rápida e eficiente, lidar com pagamentos e consultar a disponibilidade de produtos no estoque. |
-| **Necessidades** | \<ul\>\<li\>Uma interface rápida e intuitiva para registrar vendas (Ponto de Venda - PDV).\</li\>\<li\>Facilidade para buscar produtos (por nome ou código de barras).\</li\>\<li\>Processar diferentes formas de pagamento (dinheiro, cartão, Pix).\</li\>\<li\>Consultar o preço e a quantidade de um produto em estoque.\</li\>\<li\>Cadastrar clientes e associá-los a vendas.\</li\>\<li\>Fechar o caixa ao final do turno de trabalho.\</li\>\</ul\> |
+| **Necessidades** | Uma interface rápida e intuitiva para registrar vendas (Ponto de Venda - PDV). Facilidade para buscar produtos (por nome ou código de barras). Processar diferentes formas de pagamento (dinheiro, cartão, Pix). Consultar o preço e a quantidade de um produto em estoque. Cadastrar clientes e associá-los a vendas. Fechar o caixa ao final do turno de trabalho. |
 
 ### Perfil: Estoquista
 
 | Atributo | Descrição |
 | :--- | :--- |
 | **Descrição** | O Estoquista é o responsável pelas operações do almoxarifado ou estoque. Ele gerencia a entrada de mercadorias, a organização física dos produtos, o registro de perdas e a realização de inventários para garantir a acuracidade dos dados no sistema. |
-| **Necessidades** | \<ul\>\<li\>Registrar a entrada de produtos no estoque (geralmente via nota fiscal de compra).\</li\>\<li\>Dar baixa em produtos por motivos de perda, dano ou vencimento.\</li\>\<li\>Realizar a contagem física do estoque (inventário).\</li\>\<li\>Consultar a posição e a quantidade de qualquer item no estoque.\</li\>\</ul\> |
+| **Necessidades** | Registrar a entrada de produtos no estoque (geralmente via nota fiscal de compra). Dar baixa em produtos por motivos de perda, dano ou vencimento. Realizar a contagem física do estoque (inventário). Consultar a posição e a quantidade de qualquer item no estoque. |
 
 ## **Histórias de Usuários**
-
-As histórias de usuários a seguir descrevem as funcionalidades do sistema da perspectiva de quem o utiliza.
-
-> **Link Útil**: [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
 
 | EU COMO... `QUEM` | QUERO/PRECISO ... `O QUE` | PARA ... `PORQUÊ` |
 | :--- | :--- | :--- |
