@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    container_name: conectta-db
+    environment:
+      POSTGRES_USER: conectta_user
+      POSTGRES_PASSWORD: conectta_password
+      POSTGRES_DB: conectta_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
