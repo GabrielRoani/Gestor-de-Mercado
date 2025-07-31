@@ -1,5 +1,6 @@
 # Introdução
 
+Pensamos que:
 O mercadinho do seu Zé esta com dificultade no gerenciamento e controle de suas vendas, vendo isso pensamos em como ajudar o seu Zé, desenvolvendo uma solução prática e fácil para ajudarmos pequenos comércios.
 
 ## Problema
