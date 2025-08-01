@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter; // Importe
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
@@ -22,9 +23,12 @@ import java.util.List;
 public class SecurityConfig {
 
     private final UserDetailsServiceImpl userDetailsService;
+    private final JwtAuthFilter jwtAuthFilter; // Injetar o novo filtro
 
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
+    // Atualize o construtor
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService, JwtAuthFilter jwtAuthFilter) {
         this.userDetailsService = userDetailsService;
+        this.jwtAuthFilter = jwtAuthFilter;
     }
 
     @Bean
@@ -35,12 +39,12 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/login").permitAll()
-                        // ** ALTERAÇÃO PRINCIPAL AQUI **
-                        // Qualquer utilizador com um destes cargos pode aceder a qualquer endpoint da API.
                         .requestMatchers("/api/**").hasAnyRole("ADMINISTRADOR", "VENDEDOR", "ESTOQUISTA")
                         .anyRequest().authenticated()
                 )
-                .authenticationProvider(authenticationProvider());
+                .authenticationProvider(authenticationProvider())
+                // Adicione o filtro JWT antes do filtro padrão
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -52,6 +56,7 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
+        // ATENÇÃO: Verifique a porta do seu frontend. Se for 8080, mude para outra, como 5173, para evitar conflitos.
         config.setAllowedOrigins(List.of("http://localhost:5173", "http://127.0.0.1:5173"));
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
