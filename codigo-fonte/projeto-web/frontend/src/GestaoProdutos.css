@@ -74,3 +74,35 @@ th {
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+td button {
+    margin-right: 5px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.edit-button {
+    background-color: #ffc107; /* Amarelo */
+    color: #212529;
+}
+
+.edit-button:hover {
+    background-color: #e0a800;
+}
+
+.delete-button {
+    background-color: #dc3545; /* Vermelho */
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.cancel-button {
+    background-color: #6c757d; /* Cinza */
+    margin-top: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+}
