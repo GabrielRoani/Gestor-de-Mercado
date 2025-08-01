@@ -9,4 +9,7 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Optional<Usuario> findByLogin(String login);
+
+    // Contar usuários ativos (adicione este método se tiver um campo 'ativo' no futuro)
+    // long countByAtivoTrue();
 }

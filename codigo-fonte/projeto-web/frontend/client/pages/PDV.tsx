@@ -5,7 +5,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import apiClient from "@/api/axiosConfig"; // Importe o apiClient
+import apiClient from "@/api/axiosConfig";
+import { toast } from "@/components/ui/use-toast"; // Importe o toast
 
 // Interfaces ajustadas para corresponder à API
 interface Product {
@@ -26,7 +27,7 @@ export default function PDV() {
   const [searchTerm, setSearchTerm] = useState("");
   const [barcode, setBarcode] = useState("");
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [selectedPayment, setSelectedPayment] = useState<'dinheiro' | 'cartao' | 'pix' | null>(null);
+  const [selectedPayment, setSelectedPayment] = useState<'DINHEIRO' | 'CARTAO' | 'PIX' | null>(null);
   const [customerMoney, setCustomerMoney] = useState("");
   const [customerName, setCustomerName] = useState("");
   const { logout, user, canAccess } = useAuth();
@@ -109,15 +110,40 @@ export default function PDV() {
     }
   };
 
-  const finalizeSale = () => {
-    if (cart.length === 0) return;
+  const finalizeSale = async () => {
+    if (cart.length === 0 || !selectedPayment || !user) return;
 
-    alert(`Venda finalizada!\nTotal: R$ ${totalValue.toFixed(2).replace('.', ',')}\nPagamento: ${selectedPayment}\n${change > 0 ? `Troco: R$ ${change.toFixed(2).replace('.', ',')}` : ''}`);
+    const vendaRequest = {
+      metodoPagamento: selectedPayment,
+      usuarioId: parseInt(user.id, 10),
+      itens: cart.map(item => ({
+        produtoId: parseInt(item.id, 10),
+        quantidade: item.quantity,
+        precoUnitario: item.precoVenda
+      }))
+    };
 
-    setCart([]);
-    setSelectedPayment(null);
-    setCustomerMoney("");
-    setCustomerName("");
+    try {
+      await apiClient.post('/vendas', vendaRequest);
+
+      toast({
+        title: "Venda Finalizada com Sucesso!",
+        description: `Total: R$ ${totalValue.toFixed(2).replace('.', ',')}`,
+      });
+
+      setCart([]);
+      setSelectedPayment(null);
+      setCustomerMoney("");
+      setCustomerName("");
+
+    } catch (error) {
+      console.error("Erro ao finalizar a venda:", error);
+      toast({
+        title: "Erro ao Finalizar a Venda",
+        description: "Não foi possível registrar a venda. Verifique o estoque e tente novamente.",
+        variant: "destructive",
+      });
+    }
   };
 
   // Produtos de acesso rápido (mais vendidos) - agora pegando da API
@@ -352,32 +378,32 @@ export default function PDV() {
                   <CardContent className="space-y-3">
                     <div className="grid grid-cols-3 gap-2">
                       <Button
-                          variant={selectedPayment === 'dinheiro' ? 'default' : 'outline'}
+                          variant={selectedPayment === 'DINHEIRO' ? 'default' : 'outline'}
                           className="flex-col gap-1 h-auto py-3"
-                          onClick={() => setSelectedPayment('dinheiro')}
+                          onClick={() => setSelectedPayment('DINHEIRO')}
                       >
                         <Banknote className="h-4 w-4" />
                         <span className="text-xs">Dinheiro</span>
                       </Button>
                       <Button
-                          variant={selectedPayment === 'cartao' ? 'default' : 'outline'}
+                          variant={selectedPayment === 'CARTAO' ? 'default' : 'outline'}
                           className="flex-col gap-1 h-auto py-3"
-                          onClick={() => setSelectedPayment('cartao')}
+                          onClick={() => setSelectedPayment('CARTAO')}
                       >
                         <CreditCard className="h-4 w-4" />
                         <span className="text-xs">Cartão</span>
                       </Button>
                       <Button
-                          variant={selectedPayment === 'pix' ? 'default' : 'outline'}
+                          variant={selectedPayment === 'PIX' ? 'default' : 'outline'}
                           className="flex-col gap-1 h-auto py-3"
-                          onClick={() => setSelectedPayment('pix')}
+                          onClick={() => setSelectedPayment('PIX')}
                       >
                         <Calculator className="h-4 w-4" />
                         <span className="text-xs">PIX</span>
                       </Button>
                     </div>
 
-                    {selectedPayment === 'dinheiro' && (
+                    {selectedPayment === 'DINHEIRO' && (
                         <div className="space-y-2">
                           <Input
                               placeholder="Valor recebido"
@@ -407,7 +433,7 @@ export default function PDV() {
                 <Button
                     className="w-full gap-2 h-12"
                     onClick={finalizeSale}
-                    disabled={!selectedPayment || (selectedPayment === 'dinheiro' && change < 0)}
+                    disabled={!selectedPayment || (selectedPayment === 'DINHEIRO' && change < 0)}
                 >
                   <Receipt className="h-4 w-4" />
                   Finalizar Venda
