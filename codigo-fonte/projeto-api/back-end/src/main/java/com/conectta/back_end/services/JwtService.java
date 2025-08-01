@@ -19,7 +19,7 @@ public class JwtService {
 
     // 1. Gere uma chave segura de 256 bits em https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx
     // E cole aqui. Mantenha essa chave em segredo em um ambiente de produção.
-    private static final String SECRET_KEY = "senha123";
+    private static final String SECRET_KEY = "Y29uZWN0dGEtc2VjcmV0LWtleS1mb3Itand0LXN1cGVyLXNlY3VyZQ==";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

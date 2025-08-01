@@ -1,13 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import apiClient from '@/api/axiosConfig';
 
 export type UserRole = 'admin' | 'estoquista' | 'vendedor';
 
 export interface User {
   id: string;
   name: string;
-  email: string;
+  login: string; // Alterado de email para login
   role: UserRole;
   active: boolean;
   createdAt: string;
@@ -15,20 +14,47 @@ export interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<boolean>;
+  login: (loginCredential: string, password: string) => Promise<boolean>;
   logout: () => void;
   isAuthenticated: boolean;
   canAccess: (route: string) => boolean;
   hasPermission: (permission: string) => boolean;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-const mockUsers: User[] = [
-  { id: '1', name: 'João Administrador', email: 'admin', role: 'admin', active: true, createdAt: '2024-01-01' },
-  { id: '2', name: 'Maria Estoquista', email: 'estoquista', role: 'estoquista', active: true, createdAt: '2024-01-02' },
-  { id: '3', name: 'Carlos Vendedor', email: 'vendedor', role: 'vendedor', active: true, createdAt: '2024-01-03' }
+let users: User[] = [
+  { id: '1', name: 'João Administrador', login: 'admin', role: 'admin', active: true, createdAt: '2024-01-01' },
+  { id: '2', name: 'Maria Estoquista', login: 'estoquista', role: 'estoquista', active: true, createdAt: '2024-01-02' },
+  { id: '3', name: 'Carlos Vendedor', login: 'vendedor', role: 'vendedor', active: true, createdAt: '2024-01-03' }
 ];
+
+export const getAllUsers = (): User[] => users;
+
+type CreateUserData = Omit<User, 'id' | 'createdAt'> & { name: string; role: UserRole; active: boolean; login: string };
+
+export const createUser = (data: CreateUserData): User => {
+  const newUser: User = {
+    id: String(Date.now()),
+    ...data,
+    createdAt: new Date().toISOString(),
+  };
+  users.push(newUser);
+  return newUser;
+};
+
+export const updateUser = (id: string, data: Partial<CreateUserData>): boolean => {
+  const userIndex = users.findIndex(u => u.id === id);
+  if (userIndex === -1) return false;
+  users[userIndex] = { ...users[userIndex], ...data };
+  return true;
+};
+
+export const deleteUser = (id: string): boolean => {
+  const initialLength = users.length;
+  users = users.filter(u => u.id !== id);
+  return users.length < initialLength;
+};
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const roleRoutes: Record<UserRole, string[]> = {
   admin: ['/', '/pdv', '/admin', '/produtos', '/estoque', '/fornecedores', '/relatorios', '/configuracoes', '/usuarios'],
@@ -39,17 +65,14 @@ const roleRoutes: Record<UserRole, string[]> = {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
-  // ===== useEffect CORRIGIDO COM TRATAMENTO DE ERRO =====
   useEffect(() => {
     try {
       const token = localStorage.getItem('authToken');
       const savedUser = localStorage.getItem('currentUser');
-      // Só tenta carregar o usuário se ambos os itens existirem
       if (savedUser && token) {
         setUser(JSON.parse(savedUser));
       }
     } catch (error) {
-      // Se o JSON.parse falhar, limpa os dados corrompidos e segue em frente
       console.error("Falha ao carregar dados do usuário do localStorage:", error);
       localStorage.removeItem('currentUser');
       localStorage.removeItem('authToken');
@@ -67,7 +90,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const token = response.data.token;
         localStorage.setItem('authToken', token);
 
-        const foundUser = mockUsers.find(u => u.email === loginCredential);
+        const foundUser = users.find(u => u.login === loginCredential);
         if (foundUser) {
           setUser(foundUser);
           localStorage.setItem('currentUser', JSON.stringify(foundUser));
