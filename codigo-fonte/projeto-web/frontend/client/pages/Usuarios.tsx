@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useAuth, getAllUsers, createUser, updateUser, deleteUser, type User, type UserRole } from "@/contexts/AuthContext";
+import { useState, useEffect } from "react";
+import { useAuth, type User, type UserRole } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,52 +17,98 @@ import {
   ArrowLeft
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import apiClient from "@/api/axiosConfig"; // Importe o apiClient
 
 interface UserFormData {
   name: string;
-  email: string;
+  login: string;
   role: UserRole;
   active: boolean;
+  senha?: string; // Senha é opcional na atualização
 }
+
+// Interface para o usuário que vem da API (sem o campo 'active' e 'name')
+interface UserFromAPI {
+  id: string;
+  login: string;
+  cargo: UserRole;
+}
+
 
 export default function Usuarios() {
   const { user: currentUser } = useAuth();
-  const [users, setUsers] = useState<User[]>(getAllUsers());
+  const [users, setUsers] = useState<User[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [formData, setFormData] = useState<UserFormData>({
     name: '',
-    email: '',
+    login: '',
     role: 'vendedor',
-    active: true
+    active: true,
+    senha: ''
   });
 
-  const handleSave = () => {
-    if (editingUser) {
-      // Atualizar usuário existente
-      const success = updateUser(editingUser.id, formData);
-      if (success) {
-        setUsers(getAllUsers());
-        resetForm();
-      }
-    } else {
-      // Criar novo usuário
-      const newUser = createUser({ ...formData, createdAt: new Date().toISOString() });
-      setUsers(getAllUsers());
-      resetForm();
+  const fetchUsers = async () => {
+    try {
+      const response = await apiClient.get<UserFromAPI[]>('/usuarios');
+      // Adaptando os dados da API para o formato do frontend
+      const adaptedUsers = response.data.map(u => ({
+        id: u.id,
+        name: u.login, // Usando login como nome temporariamente
+        login: u.login,
+        role: u.cargo,
+        active: true, // Mockado como true por enquanto
+        createdAt: new Date().toISOString() // Mockado
+      }));
+      setUsers(adaptedUsers);
+    } catch (error) {
+      console.error("Falha ao buscar usuários:", error);
+      alert("Não foi possível carregar os usuários da API.");
     }
   };
 
-  const handleDelete = (userId: string) => {
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const handleSave = async () => {
+    // Preparar dados para enviar para a API
+    const payload = {
+      login: formData.login,
+      cargo: formData.role,
+      // Envia a senha apenas se não for uma edição ou se uma nova senha foi digitada
+      ...(formData.senha && { senha: formData.senha })
+    };
+
+    try {
+      if (editingUser) {
+        // Atualizar usuário existente
+        await apiClient.put(`/usuarios/${editingUser.id}`, payload);
+      } else {
+        // Criar novo usuário
+        await apiClient.post('/usuarios', payload);
+      }
+      fetchUsers(); // Recarrega a lista
+      resetForm();
+    } catch (error) {
+      console.error("Falha ao salvar usuário:", error);
+      alert("Ocorreu um erro ao salvar o usuário.");
+    }
+  };
+
+  const handleDelete = async (userId: string) => {
     if (userId === currentUser?.id) {
       alert("Você não pode excluir seu próprio usuário!");
       return;
     }
 
     if (window.confirm("Tem certeza que deseja excluir este usuário?")) {
-      const success = deleteUser(userId);
-      if (success) {
-        setUsers(getAllUsers());
+      try {
+        await apiClient.delete(`/usuarios/${userId}`);
+        fetchUsers(); // Recarrega a lista
+      } catch (error) {
+        console.error("Falha ao deletar usuário:", error);
+        alert("Ocorreu um erro ao deletar o usuário.");
       }
     }
   };
@@ -71,9 +117,10 @@ export default function Usuarios() {
     setEditingUser(user);
     setFormData({
       name: user.name,
-      email: user.email,
+      login: user.login,
       role: user.role,
-      active: user.active
+      active: user.active,
+      senha: '' // Limpa o campo de senha ao editar
     });
     setShowForm(true);
   };
@@ -81,9 +128,10 @@ export default function Usuarios() {
   const resetForm = () => {
     setFormData({
       name: '',
-      email: '',
+      login: '',
       role: 'vendedor',
-      active: true
+      active: true,
+      senha: ''
     });
     setEditingUser(null);
     setShowForm(false);
@@ -94,7 +142,7 @@ export default function Usuarios() {
       case 'admin':
         return <Badge className="bg-blue-500 text-white">Administrador</Badge>;
       case 'estoquista':
-        return <Badge className="bg-success text-success-foreground">Estoquista</Badge>;
+        return <Badge className="bg-green-500 text-white">Estoquista</Badge>;
       case 'vendedor':
         return <Badge className="bg-orange-500 text-white">Vendedor</Badge>;
     }
@@ -102,7 +150,7 @@ export default function Usuarios() {
 
   const getStatusBadge = (active: boolean) => {
     return active ? (
-        <Badge className="bg-success text-success-foreground">Ativo</Badge>
+        <Badge className="bg-green-500 text-white">Ativo</Badge>
     ) : (
         <Badge variant="secondary">Inativo</Badge>
     );
@@ -188,23 +236,24 @@ export default function Usuarios() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">Nome Completo</label>
+                      <label className="text-sm font-medium">Login do Usuário</label>
                       <Input
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder="Nome do funcionário"
+                          value={formData.login}
+                          onChange={(e) => setFormData({ ...formData, login: e.target.value })}
+                          placeholder="Login do funcionário"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">Email</label>
+                      <label className="text-sm font-medium">Senha</label>
                       <Input
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder="email@empresa.com"
+                          type="password"
+                          value={formData.senha}
+                          onChange={(e) => setFormData({ ...formData, senha: e.target.value })}
+                          placeholder={editingUser ? "Deixe em branco para não alterar" : "Senha de acesso"}
                       />
                     </div>
+
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Cargo</label>
@@ -213,21 +262,9 @@ export default function Usuarios() {
                           onChange={(e) => setFormData({ ...formData, role: e.target.value as UserRole })}
                           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        <option value="vendedor">Vendedor</option>
-                        <option value="estoquista">Estoquista</option>
-                        <option value="admin">Administrador</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Status</label>
-                      <select
-                          value={formData.active ? 'true' : 'false'}
-                          onChange={(e) => setFormData({ ...formData, active: e.target.value === 'true' })}
-                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      >
-                        <option value="true">Ativo</option>
-                        <option value="false">Inativo</option>
+                        <option value="VENDEDOR">Vendedor</option>
+                        <option value="ESTOQUISTA">Estoquista</option>
+                        <option value="ADMINISTRADOR">Administrador</option>
                       </select>
                     </div>
                   </div>
@@ -260,10 +297,8 @@ export default function Usuarios() {
                     <thead>
                     <tr className="border-b bg-muted/50">
                       <th className="text-left p-4 font-medium">Usuário</th>
-                      <th className="text-left p-4 font-medium">Email</th>
                       <th className="text-left p-4 font-medium">Cargo</th>
                       <th className="text-left p-4 font-medium">Status</th>
-                      <th className="text-left p-4 font-medium">Criado em</th>
                       <th className="text-right p-4 font-medium">Ações</th>
                     </tr>
                     </thead>
@@ -283,17 +318,8 @@ export default function Usuarios() {
                               </div>
                             </div>
                           </td>
-                          <td className="p-4">
-                            <div className="flex items-center gap-2">
-                              <Mail className="h-4 w-4 text-muted-foreground" />
-                              {user.email}
-                            </div>
-                          </td>
                           <td className="p-4">{getRoleBadge(user.role)}</td>
                           <td className="p-4">{getStatusBadge(user.active)}</td>
-                          <td className="p-4 text-muted-foreground">
-                            {new Date(user.createdAt).toLocaleDateString('pt-BR')}
-                          </td>
                           <td className="p-4">
                             <div className="flex items-center justify-end gap-2">
                               <Button
