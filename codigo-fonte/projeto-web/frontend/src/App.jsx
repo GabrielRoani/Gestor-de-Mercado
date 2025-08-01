@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GestaoProdutos from './GestaoProdutos';
-import './GestaoProdutos.css'; // Importe o nosso novo CSS
+import Login from './Login';
+import './GestaoProdutos.css';
 
 function App() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const handleLoginSuccess = () => {
+        setIsAuthenticated(true);
+        localStorage.setItem('isAuthenticated', 'true');
+    };
+
+    useEffect(() => {
+        const storedAuth = localStorage.getItem('isAuthenticated');
+        if (storedAuth === 'true') {
+            setIsAuthenticated(true);
+        }
+    }, []);
+
     return (
         <div className="App">
-            <GestaoProdutos />
+            {isAuthenticated ? (
+                <GestaoProdutos />
+            ) : (
+                <Login onLoginSuccess={handleLoginSuccess} />
+            )}
         </div>
     );
 }
