@@ -1,16 +1,20 @@
-# Conectta
-
+Conectta
 <img src="https://github.com/GabrielRoani/Gestor-de-Mercado/blob/main/documentos/img/logo_redonda_Conectta.png?raw=true" width="200"/>
 
-Uma plataforma leve, simples e intuitiva para uso dentro de mercados e pequenos pontos de vendas, auxiliando na gestão de estoque e produtos, venda e trazendo relátorios sobre saída e entrada de mercadoria.
+Uma plataforma leve, simples e intuitiva para uso dentro de mercados e pequenos pontos de vendas, auxiliando na gestão de estoque e produtos, venda e trazendo relatórios sobre saída e entrada de mercadoria.
 
-## Integrantes
+Status do Projeto
+Visão Geral da Arquitetura
+O projeto é construído sobre uma arquitetura moderna e robusta, consistindo em uma API RESTful desenvolvida com Java e Spring Boot para o back-end, e uma interface de usuário dinâmica e responsiva criada com React e Vite para o front-end. O banco de dados utilizado é o MySQL, e um serviço de análise de dados em Python com Flask, Pandas e Matplotlib complementa a stack para geração de relatórios e gráficos.
 
-* Gabriel Cazzuni Roani
-* Marcelo Giovani Chies Filho
+<img src="https://github.com/GabrielRoani/Gestor-de-Mercado/blob/main/documentos/img/diagrama_arquitetura.png?raw=true" alt="Diagrama de Arquitetura">
 
-# Documentação
+Integrantes
+Gabriel Cazzuni Roani
 
+Marcelo Giovani Chies Filho
+
+Documentação
 <ol>
 <li><a href="documentos/01-Documentação de Contexto.md"> Documentação de Contexto</a></li>
 <li><a href="documentos/02-Especificação do Projeto.md"> Especificação do Projeto</a></li>
@@ -23,10 +27,21 @@ Uma plataforma leve, simples e intuitiva para uso dentro de mercados e pequenos 
 <li><a href="documentos/09-Referências.md"> Referências Bibliográficas</a></li>
 </ol>
 
-# Código-Fonte
+Como Contribuir
+Agradecemos o interesse em contribuir com o projeto Conectta! Para garantir um processo colaborativo e organizado, pedimos que siga estas diretrizes:
 
-* <a href="codigo-fonte/README.md">Código Fonte</a>
+Fork o repositório: Crie um fork do projeto para sua conta do GitHub.
 
-# Apresentação
+Crie uma Branch: Para cada nova feature ou correção, crie uma branch separada (git checkout -b minha-feature).
 
-* <a href="apresentacao/README.md">Apresentação do Projeto</a>
+Faça suas alterações: Implemente suas modificações e realize commits claros e descritivos.
+
+Envie um Pull Request: Abra um Pull Request da sua branch para a main do repositório original, detalhando as mudanças realizadas.
+
+Qualquer dúvida, sinta-se à vontade para abrir uma Issue.
+
+Código-Fonte
+<a href="codigo-fonte/README.md">Código Fonte</a>
+
+Apresentação
+<a href="apresentacao/README.md">Apresentação do Projeto</a>
