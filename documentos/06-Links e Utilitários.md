@@ -8,3 +8,4 @@ Uma ferramenta web capaz de servir como bloco de notas online, servindo como mei
 
 ## Swagger
 
+http://localhost:8080/swagger-ui/
