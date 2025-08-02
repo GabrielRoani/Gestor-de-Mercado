@@ -1,12 +1,15 @@
-# Template padrão da Aplicação
+# Como utilizar nossa aplicação em sua máquina
 
-Layout padrão do site (HTML e CSS) que será utilizado em todas as páginas com a definição de identidade visual, aspectos de responsividade e iconografia.
+## Clone o repositório
+git clone https://github.com/GabrielRoani/Gestor-de-Mercado.git
 
-[Apresente a estrutura padrão da sua aplicação.]
+## Navegue para a pasta do backend e rode a aplicação Spring Boot
+cd Gestor-de-Mercado/codigo-fonte/projeto-api/back-end
+./mvnw spring-boot:run
 
-> **Links Úteis**:
->
-> - [CSS Website Layout (W3Schools)](https://www.w3schools.com/css/css_website_layout.asp)
-> - [Website Page Layouts](http://www.cellbiol.com/bioinformatics_web_development/chapter-3-your-first-web-page-learning-html-and-css/website-page-layouts/)
-> - [Perfect Liquid Layout](https://matthewjamestaylor.com/perfect-liquid-layouts)
-> - [How and Why Icons Improve Your Web Design](https://usabilla.com/blog/how-and-why-icons-improve-you-web-design/)
+## Em outro terminal, navegue para a pasta do frontend e instale as dependências
+cd Gestor-de-Mercado/codigo-fonte/projeto-web/frontend
+npm install
+
+## Rode a aplicação React com Vite
+npm run dev
